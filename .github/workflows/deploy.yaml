@@ -31,4 +31,4 @@ jobs:
             git pull origin main
             npm ci
             sudo chown -R nodejs:nodejs /var/www/html
-            pm2 restart bot
+            pm2 restart all
