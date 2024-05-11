@@ -26,10 +26,8 @@ jobs:
           username: ${{ secrets.DIGITALOCEAN_USERNAME }}
           password: ${{ secrets.DIGITALOCEAN_PASSWORD }}
           script: |
-            ssh nodejs@localhost << 'EOF'
             cd /var/www/html
             git pull origin main
             npm ci
-            chown -R nodejs:nodejs /var/www/html
+            sudo chown -R nodejs:nodejs /var/www/html
             pm2 restart bot
-            EOF
