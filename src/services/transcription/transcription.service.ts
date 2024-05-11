@@ -9,10 +9,10 @@ import { LanguageCode } from './types';
  * @class SpeechToTextService
  */
 export class TranscriptionService {
-    private readonly content: Buffer | string;
+    private readonly buffer: Buffer;
 
-    constructor(content: Buffer | string) {
-        this.content = content;
+    constructor(buffer: Buffer | string) {
+        this.buffer = typeof buffer === 'string' ? Buffer.from(buffer, 'base64') : buffer;
     }
 
     /**
@@ -23,7 +23,7 @@ export class TranscriptionService {
             const speechClient = new SpeechClient();
 
             const file = {
-                content: this.content,
+                content: this.buffer,
             };
 
             const config = {
@@ -50,7 +50,7 @@ export class TranscriptionService {
      * Check voice recording duration
      */
     public getAudioDuration(): number {
-        const data = this.content;
+        const data = this.buffer;
         const encoder = new OpusEncoder(48000, 2);
         const pcm = encoder.decode(data as Buffer);
         return pcm.length / 48000;
