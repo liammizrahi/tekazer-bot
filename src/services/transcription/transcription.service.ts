@@ -1,6 +1,6 @@
-import * as nodeOpus from 'node-opus';
 import { SpeechClient } from '@google-cloud/speech';
 import { google } from '@google-cloud/speech/build/protos/protos';
+import { OpusEncoder } from '@discordjs/opus';
 
 import { LanguageCode } from './types';
 
@@ -51,7 +51,8 @@ export class TranscriptionService {
      */
     public getAudioDuration(): number {
         const data = this.content;
-        const decoder = new nodeOpus.OpusDecoder(48000, 2);
-        return decoder.decode(data, 4096).pcm.length / 48000;
+        const encoder = new OpusEncoder(48000, 2);
+        const pcm = encoder.decode(data as Buffer);
+        return pcm.length / 48000;
     }
 }
