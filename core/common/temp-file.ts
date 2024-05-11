@@ -7,7 +7,7 @@ export class TempFile {
     private filePath: string | null = null;
 
     constructor(
-        private buffer: string | Buffer,
+        private buffer: Buffer,
         private mimetype: string,
     ) {
         this.createTempFile();
@@ -38,7 +38,7 @@ export class TempFile {
         return this.mimetype;
     }
 
-    getBuffer(): string | Buffer {
+    getBuffer(): Buffer {
         return this.buffer;
     }
 }

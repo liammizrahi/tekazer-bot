@@ -15,7 +15,7 @@ export class SpeechToTextHandler implements MessageHandler {
             await conversation.closeConversation();
 
             const file: TempFile = (await conversation.getSetting('file')) as TempFile;
-            if (file.getFilePath()) {
+            if (file !== null) {
                 file.done();
             }
 
@@ -29,7 +29,7 @@ export class SpeechToTextHandler implements MessageHandler {
         await conversation.sendMessage('אני מתמלל את ההקלטה, כמה רגעים...');
 
         const file = (await conversation.getSetting('file')) as TempFile;
-        const transcriptionService = new TranscriptionService(file.getBuffer() as string);
+        const transcriptionService = new TranscriptionService(file.getBuffer());
         file.done();
 
         if (transcriptionService.getAudioDuration() > this.MAX_DURATION_SECONDS) {

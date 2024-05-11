@@ -221,7 +221,7 @@ export class ConversationManager {
      */
     async downloadMediaToTempFile(): Promise<TempFile> {
         const media = await this.message.downloadMedia();
-        return new TempFile(media.data, media.mimeType);
+        return new TempFile(Buffer.from(media.data), media.mimeType);
     }
 
     get client(): IClient {
