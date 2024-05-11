@@ -1,0 +1,16 @@
+# IDEs
+.idea/
+.vscode/
+.fleet/
+# Node modules
+node_modules/
+build/
+# Temporary files
+tmp/
+temp/
+# Application cache files
+.wwebjs_auth/
+.wwebjs_cache/
+# Seneitive files
+.env
+core/files/db.sqlite
