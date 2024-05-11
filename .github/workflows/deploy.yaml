@@ -5,13 +5,22 @@ on:
     branches:
       - main
 
+runs:
+  using: 'node20'
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js environment
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - run: npm install
 
       - name: SSH to DigitalOcean and deploy
         uses: appleboy/ssh-action@master
