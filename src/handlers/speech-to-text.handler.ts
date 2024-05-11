@@ -14,8 +14,10 @@ export class SpeechToTextHandler implements MessageHandler {
             await conversation.sendMessage('עבר יותר מידי זמן בעיבוד הבקשה, נא לשלוח את ההקלטה מחדש.');
             await conversation.closeConversation();
 
-            const file = (await conversation.getSetting('file')) as TempFile;
-            file.done();
+            const file: TempFile = (await conversation.getSetting('file')) as TempFile;
+            if (file.getFilePath()) {
+                file.done();
+            }
 
             return;
         }
