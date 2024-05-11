@@ -25,6 +25,7 @@ jobs:
           host: ${{ secrets.DIGITALOCEAN_HOST }}
           username: ${{ secrets.DIGITALOCEAN_USERNAME }}
           password: ${{ secrets.DIGITALOCEAN_PASSWORD }}
+          port: ${{ secrets.DIGITALOCEAN_PORT }}
           script: |
             cd /var/www/html
             git pull origin main
