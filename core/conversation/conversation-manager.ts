@@ -112,7 +112,6 @@ export class ConversationManager {
      * @param newState
      */
     async changeState(newState: string): Promise<void> {
-        await this.sendMessage(`Changing state to: ${newState}`);
         if (!this._conversation) {
             return;
         }
@@ -175,7 +174,6 @@ export class ConversationManager {
      */
     async processIncomeMessage(): Promise<void> {
         const state = this._conversation.state;
-        await this.sendMessage(`State: ${state}`);
 
         const handler: MessageHandler = StateHandlerUtil.getByState(state);
 
