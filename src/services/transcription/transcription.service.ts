@@ -11,8 +11,8 @@ import { LanguageCode } from './types';
 export class TranscriptionService {
     private readonly buffer: Buffer;
 
-    constructor(buffer: string) {
-        this.buffer = Buffer.from(buffer, 'base64');
+    constructor(buffer: Buffer | string) {
+        this.buffer = Buffer.from(buffer);
     }
 
     /**
