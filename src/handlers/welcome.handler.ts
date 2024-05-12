@@ -15,7 +15,7 @@ export class WelcomeHandler implements MessageHandler {
 
         const file = await conversation.downloadMediaToTempFile();
 
-        const allowedMimeTypes = ['audio/mpeg', 'audio/wav', 'audio/ogg', 'audio/aac', 'audio/amr'];
+        const allowedMimeTypes = ['audio/wav', 'audio/ogg', 'audio/aac', 'audio/amr'];
         if (!allowedMimeTypes.includes(this.cleanMimeType(file.getMimeType()))) {
             await conversation.sendMessage('יש לשלוח הודעות קול בלבד.');
             await conversation.closeConversation();
