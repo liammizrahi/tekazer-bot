@@ -32,12 +32,11 @@ export class SpeechToTextHandler implements MessageHandler {
         const transcriptionService = new TranscriptionService(file.getBuffer());
         file.done();
 
-        const duration = transcriptionService.getAudioDuration();
-        console.log('duration', duration);
-        if (duration > this.MAX_DURATION_SECONDS) {
-            await conversation.sendMessage('ההקלטה ארוכה מידי. נא לשלוח הקלטה קצרה יותר, עד חצי דקה.');
-            return await conversation.closeConversation();
-        }
+        // const duration = transcriptionService.getAudioDuration();
+        // if (duration > this.MAX_DURATION_SECONDS) {
+        //     await conversation.sendMessage('ההקלטה ארוכה מידי. נא לשלוח הקלטה קצרה יותר, עד חצי דקה.');
+        //     return await conversation.closeConversation();
+        // }
 
         const transcription = await transcriptionService.transcribe();
 
