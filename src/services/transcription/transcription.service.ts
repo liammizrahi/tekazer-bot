@@ -23,7 +23,7 @@ export class TranscriptionService {
             const speechClient = new SpeechClient();
 
             const file = {
-                content: this.buffer,
+                content: this.buffer.toString('base64'),
             };
 
             const config = {
