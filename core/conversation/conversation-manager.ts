@@ -195,13 +195,6 @@ export class ConversationManager {
         await handler.handleMessage(this);
     }
 
-    private async sendToHelp() {
-        await this.sendMessage('אנחנו כאן כדי לעזור לך, נציג ייצור עמך קשר בהקדם');
-        await this.sendMessage('לשיחה עם נציג אנושי שזמין 24/7 יש לשלוח הודעה אלינו ב @AsiRabet');
-        await this.sendMessage('https://t.me/AsiRabet');
-        await this.closeConversation();
-    }
-
     /**
      * Download the media from the message
      * @deprecated
