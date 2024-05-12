@@ -23,7 +23,7 @@ export class TranscriptionService {
             const speechClient = new SpeechClient();
 
             const file = {
-                content: this.buffer.toString('base64'),
+                content: this.buffer,
             };
 
             const config = {
@@ -38,9 +38,10 @@ export class TranscriptionService {
                 config: config,
             };
 
-            const [response] = await speechClient.recognize(request);
+            // const [response] = await speechClient.recognize(request);
+            const response = await speechClient.recognize(request);
             console.log('GCP Transcription Response:', response);
-            return response.results.map((result) => result.alternatives[0].transcript).join('\n');
+            return response[0].results.map((result) => result.alternatives[0].transcript).join('\n');
         } catch (error) {
             console.error('Error during transcription:', error.message);
             return undefined;
