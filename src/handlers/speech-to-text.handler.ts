@@ -29,17 +29,17 @@ export class SpeechToTextHandler implements MessageHandler {
         await conversation.sendMessage('אני מתמלל את ההקלטה, כמה רגעים...');
 
         const file = (await conversation.getSetting('file')) as TempFile;
-        console.log('Loaded File:', file);
         const transcriptionService = new TranscriptionService(file.getBuffer());
         file.done();
 
-        // if (transcriptionService.getAudioDuration() > this.MAX_DURATION_SECONDS) {
-        //     await conversation.sendMessage('ההקלטה ארוכה מידי. נא לשלוח הקלטה קצרה יותר, עד חצי דקה.');
-        //     return await conversation.closeConversation();
-        // }
+        const duration = transcriptionService.getAudioDuration();
+        console.log('duration', duration);
+        if (duration > this.MAX_DURATION_SECONDS) {
+            await conversation.sendMessage('ההקלטה ארוכה מידי. נא לשלוח הקלטה קצרה יותר, עד חצי דקה.');
+            return await conversation.closeConversation();
+        }
 
         const transcription = await transcriptionService.transcribe();
-        console.log('Transcription:', transcription);
 
         await conversation.setSetting('transcription', transcription);
         await conversation.changeState(ChatState.ASK_FOR_SUMMARY);
