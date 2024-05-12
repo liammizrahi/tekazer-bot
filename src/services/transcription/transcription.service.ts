@@ -39,6 +39,7 @@ export class TranscriptionService {
             };
 
             const [response] = await speechClient.recognize(request);
+            console.log('GCP Transcription Response:', response);
             return response.results.map((result) => result.alternatives[0].transcript).join('\n');
         } catch (error) {
             console.error('Error during transcription:', error.message);
