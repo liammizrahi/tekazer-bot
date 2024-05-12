@@ -15,7 +15,7 @@ export class SpeechToTextHandler implements MessageHandler {
             await conversation.closeConversation();
 
             const file: TempFile = (await conversation.getSetting('file')) as TempFile;
-            if (file !== null) {
+            if (file instanceof TempFile) {
                 file.done();
             }
 
