@@ -29,6 +29,7 @@ export class SpeechToTextHandler implements MessageHandler {
         await conversation.sendMessage('אני מתמלל את ההקלטה, כמה רגעים...');
 
         const file = (await conversation.getSetting('file')) as TempFile;
+        console.log('Loaded File:', file);
         const transcriptionService = new TranscriptionService(file.getBuffer());
         file.done();
 
@@ -38,6 +39,7 @@ export class SpeechToTextHandler implements MessageHandler {
         // }
 
         const transcription = await transcriptionService.transcribe();
+        console.log('Transcription:', transcription);
 
         await conversation.setSetting('transcription', transcription);
         await conversation.changeState(ChatState.ASK_FOR_SUMMARY);
